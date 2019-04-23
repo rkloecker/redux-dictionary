@@ -1,10 +1,12 @@
 # redux-dictionary
 
-### A react redux english german dictionary app
+> A react redux english german dictionary app
 
 ### [Deployment with gh-pages](https://rkloecker.github.io/redux-dictionary/)
 
+### [Backend Repo](https://github.com/rkloecker/eng-ger-dictionary-app)
 
+## Build Setup
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
