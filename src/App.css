@@ -1,0 +1,73 @@
+/* .foo{
+border: 1px solid rgb(218, 213, 213);
+}
+
+.fadeout{
+  animation: fadeOut 12s forwards;
+  
+}
+
+@keyframes fadeOut{
+  from {opacity: 1;}
+  to {opacity: 0;}
+} */
+
+@media (min-width: 850px) {
+  /* body{
+    background-color: red !important;
+  } */
+  .container{
+    max-width: 850px;
+  }
+}
+@media (max-width: 576px) {
+
+  .head{
+    font-size: 0.8rem;
+  }
+  /* body {
+    background-color: rgb(230, 203, 173);
+  
+  } */
+  .col{
+    border-bottom: 1px solid rgb(203, 203, 212);
+    padding-bottom: 8px;
+    padding-bottom: 8px;
+  }
+  .nogutters {
+    margin-right: 0;
+    margin-left: 0;
+    
+  }
+  .nogutters > .col,
+  .nogutters > [class*=col-] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .btn-phone
+{
+  padding: 2px 12px;
+  margin: 0;
+  background: #fff;
+  color: black;
+  border: none;
+}  
+
+.upd-phone{
+color: green;
+}
+
+
+.del-phone{
+  color: red;
+
+}
+
+.btn-phone:hover .upd-phone,
+.btn-phone:hover .del-phone {
+    color: white;
+}
+
+
+}
