@@ -15,9 +15,9 @@ class WordRowColumn extends Component {
     const {
       dict: { words }
     } = this.props;
-    // if (this.props.dict.loading) {
-    //   return <p>App is loading</p>;
-    // } else
+    if (this.props.dict.loading) {
+      return <p>App is loading</p>;
+    }
     return (
       <>
         <div className="row mb-2 nogutters font-weight-bold head">

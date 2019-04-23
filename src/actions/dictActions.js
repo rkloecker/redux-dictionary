@@ -9,92 +9,81 @@ import {
   CANCEL
 } from "./types";
 
+// for testing delay in api calls
+// const pause = n => new Promise(r => setTimeout(r, n));
+
 const API_URL = process.env.REACT_APP_URL;
 
-export const getWords = () => dispatch => {
+export const getWords = () => async dispatch => {
   dispatch(setappsLoading());
-  // scroll to form
-
-  axios
-    .get(`${API_URL}`)
-    .then(res => {
-      // console.log("getWords was called successfully");
-      if (res.data) {
-        dispatch({
-          type: GET_WORDS,
-          payload: res.data
-        });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
-
-export const getWord = id => dispatch => {
-  window.scrollTo(0, 0);
-  axios
-    .get(`${API_URL}/${id}`)
-    .then(res => {
-      if (res.data) {
-        // console.log("getWord was caled in action");
-        // console.log(res.data);
-        dispatch({
-          type: GET_WORD,
-          payload: res.data
-        });
-        // } else {
-        //   dispatch({
-        //     type: GET_ERROR,
-        //     payload: "could not get single word"
-        //   });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
-
-export const addWord = word => dispatch => {
-  axios
-    .post(`${API_URL}`, word)
-    .then(res =>
+  // await pause(1500);
+  try {
+    const json = await axios.get(`${API_URL}`);
+    // console.log(json.data);
+    if (json.data) {
       dispatch({
-        type: ADD_WORD,
-        payload: res.data
-      })
-    )
-    .catch(err => {
-      console.log(err);
-    });
-};
-
-export const updateWord = word => dispatch => {
-  axios
-    .put(`${API_URL}/${word._id}`, word)
-    .then(res => {
-      dispatch({
-        type: UPDATE_WORD,
-        payload: res.data
+        type: GET_WORDS,
+        payload: json.data
       });
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const deleteWord = id => dispatch => {
-  axios
-    .delete(`${API_URL}/${id}`)
-    .then(res =>
+export const getWord = id => async dispatch => {
+  window.scrollTo(0, 0);
+  try {
+    const json = await axios.get(`${API_URL}/${id}`);
+    // console.log(json);
+    if (json.data) {
       dispatch({
-        type: DELETE_WORD,
-        payload: id
-      })
-    )
-    .catch(err => {
-      console.log(err);
+        type: GET_WORD,
+        payload: json.data
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addWord = word => async dispatch => {
+  try {
+    const json = await axios.post(`${API_URL}`, word);
+    // console.log(json);
+    dispatch({
+      type: ADD_WORD,
+      payload: json.data
     });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateWord = word => async dispatch => {
+  try {
+    const json = await axios.put(`${API_URL}/${word._id}`, word);
+    // console.log(json);
+    dispatch({
+      type: UPDATE_WORD,
+      payload: json.data
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteWord = id => async dispatch => {
+  try {
+    await axios.delete(`${API_URL}/${id}`);
+    // console.log(json);
+    dispatch({
+      type: DELETE_WORD,
+      payload: id
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const setappsLoading = () => {
@@ -102,12 +91,6 @@ export const setappsLoading = () => {
     type: APPS_LOADING
   };
 };
-
-// export const getError = () => {
-//   return {
-//     type: GET_ERROR
-//   };
-// };
 
 export const cancel = () => {
   return {

@@ -116,7 +116,7 @@ class AddUpdateForm extends Component {
     ) : null;
 
     return (
-      <form className="mt-3" onSubmit={this.onSubmit}>
+      <form className="mt-3 lmargin" onSubmit={this.onSubmit}>
         {errorMessage}
         <div className="form-group row">
           <label
